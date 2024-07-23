@@ -31,7 +31,8 @@ public sealed class RabbitMQBus : IEventBus
         {
             HostName = _settings.Hostname,
             UserName = _settings.UserName,
-            Password = _settings.Password
+            Password = _settings.Password,
+            Port = _settings.Port
         };
 
         using var connection = factory.CreateConnection();
