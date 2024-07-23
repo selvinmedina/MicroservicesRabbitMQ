@@ -1,6 +1,12 @@
 @MicroRabbit.Banking.Api_HostAddress = http://localhost:5260
 
-GET {{MicroRabbit.Banking.Api_HostAddress}}/weatherforecast/
-Accept: application/json
+POST {{MicroRabbit.Banking.Api_HostAddress}}/api/Banking
+Content-Type: application/json
+
+{
+  "accountFrom": 10001,
+  "accountTo": 2001,
+  "transferAmount": 10000
+}
 
 ###
