@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  banking-api:
+    build:
+      context: ..
+      dockerfile: ./Microservices/Banking/Api/MicroRabbit.Banking.Api/Dockerfile
+    ports:
+      - "5001:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__BankingDbConnection=Server=sqlserverselvin;Database=Banking;User Id=sa;Password=Administrator123$;TrustServerCertificate=True;MultipleActiveResultSets=true
+      - RabbitMQSettings__Hostname=rabbit-selvin-web
+
+  transfer-api:
+    build:
+      context: ..
+      dockerfile: ./Microservices/Transfer/Api/MicroRabbit.Transfer.Api/Dockerfile
+    ports:
+      - "5002:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__TransferDbConnection=Server=sqlserverselvin;Database=Transfer;User Id=sa;Password=Administrator123$;TrustServerCertificate=True;MultipleActiveResultSets=true
+      - RabbitMQSettings__Hostname=rabbit-selvin-web
+networks:
+  default:
+    external:
+      name: selvin-network
